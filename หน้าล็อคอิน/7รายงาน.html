@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ส่งรายงานโพสต์ไปยัง Admin</title>
+    <link rel="stylesheet" href="รายงาน.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>ส่งรายงานโพสต์ไปยัง Admin</h2>
+
+        <!-- ฟอร์มส่งรายงาน -->
+        <form action="thaitanapooh@gmail.com" method="post" enctype="text/plain">
+            
+            <div class="mb-3">
+                <label for="postTitle" class="form-label">หัวข้อโพสต์</label>
+                <input type="text" class="form-control" id="postTitle" name="postTitle" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="postDescription" class="form-label">รายละเอียดโพสต์</label>
+                <textarea class="form-control" id="postDescription" name="postDescription" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="reportedReason" class="form-label">เหตุผลการรายงาน</label>
+                <textarea class="form-control" id="reportedReason" name="reportedReason" rows="4" required></textarea>
+            </div>
+
+            <!-- ตัวเลือกเพิ่มเติม (Radio buttons) -->
+            <div class="mb-3">
+                <label class="form-label">ต้องการติดต่อ Admin ผ่าน</label><br>
+                <input type="radio" id="contactEmail" name="contactMethod" value="อีเมล" required>
+                <label for="contactEmail">อีเมล</label><br>
+                <input type="radio" id="contactPhone" name="contactMethod" value="โทรศัพท์">
+                <label for="contactPhone">โทรศัพท์</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">ส่งรายงาน</button>
+            <a href="4หน้าหลัก.html">
+                <button type="button">กลับไปหน้าหลัก</button>
+              </a>
+        </form>
+    </div>
+
+    <script src="script.js"></script> 
+
+</body>
+</html>

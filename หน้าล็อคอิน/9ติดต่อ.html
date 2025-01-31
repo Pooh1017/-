@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา</title>
+    <!-- ใช้ไฟล์ CSS ที่ถูกต้อง -->
+    <link rel="stylesheet" href="ติดต่อ.css"> <!-- เปลี่ยนจากติดต่อ.html เป็น styles.css -->
+</head>
+<body>
+    <form action="thaitanapooh@gmail.com" method="post" enctype="text/plain">
+        <div class="mb-3">
+            <label for="name" class="form-label">ชื่อของคุณ</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">ข้อความ</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">ส่งข้อความ</button>
+    </form>
+    <a href="4หน้าหลัก.html">
+        <button type="button">กลับหน้าหลัก</button>
+      </a>
+    <form action="http://localhost:3000/send-report" method="post">
+        <script src="ติดต่อผู้ขาย.js"></script>
+</body>
+</html>

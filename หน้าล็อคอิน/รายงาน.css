@@ -1,0 +1,93 @@
+/* กำหนดพื้นหลังของหน้า */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* ตั้งค่าตัวเลือกสำหรับฟอร์ม */
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* หัวข้อ */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* ตั้งค่ารูปแบบของฟอร์ม */
+.form-label {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.form-control {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+button {
+    width: 200px;
+    padding: 10px;
+    background-color: #188cd9;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* เพิ่มระยะห่างระหว่างส่วนต่างๆ */
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+/* รูปแบบของตัวเลือก (Radio buttons) */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* เพิ่มการจัดตำแหน่ง */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ให้ข้อความและปุ่มทำงานร่วมกันได้ดี */
+form {
+    margin-top: 20px;
+}
+
+/* รูปแบบของปุ่ม */
+button[type="submit"] {
+    width: auto;
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 1rem;
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าโปรไฟล์ - Pet Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ส่วนหัว -->
+    <header class="py-3 mb-4 border-bottom">
+        <div class="container d-flex flex-wrap justify-content-between">
+            <a href="หน้าหลัก.html" class="text-decoration-none">
+                <h2 class="text-primary">Pet Shop</h2>
+            </a>
+            <a href="4หน้าหลัก.html" class="btn btn-secondary">กลับหน้าหลัก</a>
+        </div>
+    </header>
+
+    <!-- ฟอร์มกรอกข้อมูลโปรไฟล์ -->
+    <div class="container" id="profileFormContainer">
+        <div class="card p-4 shadow-sm">
+            <h3>กรอกข้อมูลโปรไฟล์</h3>
+            <form id="profileForm">
+                <!-- รูปโปรไฟล์ -->
+                <div class="mb-3">
+                    <label for="profilePicture" class="form-label">เลือกรูปโปรไฟล์</label>
+                    <input type="file" class="form-control" id="profilePicture" accept="image/*" onchange="previewImage(event)">
+                </div>
+
+                <!-- ชื่อ-สกุล -->
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">ชื่อ-สกุล</label>
+                    <input type="text" class="form-control" id="fullName" required>
+                </div>
+
+                <!-- ที่อยู่ -->
+                <div class="mb-3">
+                    <label for="address" class="form-label">ที่อยู่</label>
+                    <textarea class="form-control" id="address" required></textarea>
+                </div>
+
+                <!-- เบอร์โทร -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label">เบอร์โทร</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                </div>
+
+                <!-- อีเมล -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">อีเมล</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ส่วนแสดงข้อมูลโปรไฟล์ -->
+    <div class="container mt-5" id="profileDisplayContainer" style="display: none;">
+        <div class="card p-4 shadow-sm" id="profileDisplay">
+            <h3>โปรไฟล์ของคุณ</h3>
+            <div class="row">
+                <!-- รูปโปรไฟล์ -->
+                <div class="col-md-4 text-center">
+                    <img id="displayProfilePicture" src="" alt="รูปโปรไฟล์" class="profile-img">
+                </div>
+                <!-- ข้อมูลโปรไฟล์ -->
+                <div class="col-md-8">
+                    <p><strong>ชื่อ-สกุล:</strong> <span id="displayFullName"></span></p>
+                    <p><strong>ที่อยู่:</strong> <span id="displayAddress"></span></p>
+                    <p><strong>เบอร์โทร:</strong> <span id="displayPhone"></span></p>
+                    <p><strong>อีเมล:</strong> <span id="displayEmail"></span></p>
+                    <!-- ปุ่มแก้ไขข้อมูล -->
+                    <button id="editProfileButton" class="btn btn-warning">แก้ไขข้อมูล</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ฟังก์ชันแสดงตัวอย่างรูปโปรไฟล์ที่เลือก
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('displayProfilePicture');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // ฟังก์ชันเมื่อกดปุ่มบันทึกข้อมูล
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // ป้องกันการโหลดใหม่ของหน้าเว็บ
+
+            // ดึงค่าจากฟอร์ม
+            const fullName = document.getElementById('fullName').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const profilePicture = document.getElementById('profilePicture').files[0];
+
+            // บันทึกข้อมูลใน localStorage
+            localStorage.setItem('profileFullName', fullName);
+            localStorage.setItem('profileAddress', address);
+            localStorage.setItem('profilePhone', phone);
+            localStorage.setItem('profileEmail', email);
+
+            // ถ้ามีรูปโปรไฟล์ให้บันทึก
+            if (profilePicture) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    localStorage.setItem('profilePicture', reader.result);
+                };
+                reader.readAsDataURL(profilePicture);
+            }
+
+            // ซ่อนฟอร์มกรอกข้อมูลและแสดงข้อมูลโปรไฟล์
+            document.getElementById('profileFormContainer').style.display = 'none';
+            document.getElementById('profileDisplayContainer').style.display = 'block';
+
+            // แสดงข้อมูลโปรไฟล์
+            displayProfile();
+        });
+
+        // ฟังก์ชันแสดงข้อมูลโปรไฟล์จาก localStorage
+        function displayProfile() {
+            const fullName = localStorage.getItem('profileFullName');
+            const address = localStorage.getItem('profileAddress');
+            const phone = localStorage.getItem('profilePhone');
+            const email = localStorage.getItem('profileEmail');
+            const profilePicture = localStorage.getItem('profilePicture');
+
+            // แสดงข้อมูลในส่วนโปรไฟล์
+            document.getElementById('displayFullName').textContent = fullName || 'ไม่ระบุ';
+            document.getElementById('displayAddress').textContent = address || 'ไม่ระบุ';
+            document.getElementById('displayPhone').textContent = phone || 'ไม่ระบุ';
+            document.getElementById('displayEmail').textContent = email || 'ไม่ระบุ';
+
+            if (profilePicture) {
+                document.getElementById('displayProfilePicture').src = profilePicture;
+            }
+        }
+
+        // ฟังก์ชันเมื่อกดปุ่มแก้ไขข้อมูล
+        document.getElementById('editProfileButton').addEventListener('click', function() {
+            // แสดงฟอร์มกรอกข้อมูลใหม่
+            document.getElementById('profileFormContainer').style.display = 'block';
+            document.getElementById('profileDisplayContainer').style.display = 'none';
+
+            // เติมข้อมูลลงในฟอร์มกรอกข้อมูล
+            document.getElementById('fullName').value = localStorage.getItem('profileFullName') || '';
+            document.getElementById('address').value = localStorage.getItem('profileAddress') || '';
+            document.getElementById('phone').value = localStorage.getItem('profilePhone') || '';
+            document.getElementById('email').value = localStorage.getItem('profileEmail') || '';
+        });
+
+        // เรียกใช้ฟังก์ชันเมื่อหน้าเว็บโหลด
+        window.addEventListener('DOMContentLoaded', function() {
+            const profileDataExists = localStorage.getItem('profileFullName') && 
+                                      localStorage.getItem('profileAddress') && 
+                                      localStorage.getItem('profilePhone') && 
+                                      localStorage.getItem('profileEmail');
+
+            if (profileDataExists) {
+                // ถ้ามีข้อมูลโปรไฟล์แล้วให้แสดงข้อมูลโปรไฟล์
+                document.getElementById('profileFormContainer').style.display = 'none';
+                document.getElementById('profileDisplayContainer').style.display = 'block';
+                displayProfile();
+            }
+        });
+    </script>
+
+    <!-- ใส่ JavaScript ของ Bootstrap -->
+    <script src="8โปรไฟล์.js"></script>
+</body>
+</html>
