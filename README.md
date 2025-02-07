@@ -33,11 +33,15 @@ const sequelize = new Sequelize('petshop_db', 'petshop_user', 'password1234', {
 sequelize.authenticate()
     .then(() => console.log('Database connected...'))
     .catch(err => console.log('Error: ' + err));
+
 3. คำสั่ง Build Project และ Run
+
 3.1 ติดตั้ง Dependencies
 npm install
+
 3.2 รันการ Migrate Database
 npx sequelize-cli db:migrate
+
 3.3 เริ่มต้นเซิร์ฟเวอร์
 npm start
 หลังจากรันเซิร์ฟเวอร์สำเร็จแล้ว ให้เปิดเว็บเบราว์เซอร์และเข้าถึงโปรเจคของคุณผ่าน URL:
